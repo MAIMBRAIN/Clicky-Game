@@ -1,0 +1,63 @@
+[
+    {
+        "id": 0,
+        "name": "Bulbasaur",
+        "image": "https://assets.pokemon.com/assets/cms2/img/pokedex/full/001.png"
+    },
+    {
+        "id": 1,
+        "name": "Charmander",
+        "image": "https://assets.pokemon.com/assets/cms2/img/pokedex/full/004.png"
+    },
+    {
+        "id": 2,
+        "name": "Squirtle",
+        "image": "https://assets.pokemon.com/assets/cms2/img/pokedex/full/007.png"
+    },
+    {
+        "id": 3,
+        "name": "Caterpie",
+        "image": "https://assets.pokemon.com/assets/cms2/img/pokedex/full/010.png"
+    },
+    {
+        "id": 4,
+        "name": "Castform",
+        "image": "https://assets.pokemon.com/assets/cms2/img/pokedex/full/351.png"
+    },
+    {
+        "id": 5,
+        "name": "Snorlax",
+        "image": "https://assets.pokemon.com/assets/cms2/img/pokedex/full/143.png"
+    },
+    {
+        "id": 6,
+        "name": "Rattata",
+        "image": "https://assets.pokemon.com/assets/cms2/img/pokedex/full/019.png"
+    },
+    {
+        "id": 7,
+        "name": "Spearow",
+        "image": "https://assets.pokemon.com/assets/cms2/img/pokedex/full/021.png"
+    },
+    {
+        "id": 8,
+        "name": "Pikachu",
+        "image": "https://assets.pokemon.com/assets/cms2/img/pokedex/full/025.png"
+    },
+    {
+        "id": 9,
+        "name": "Meowth",
+        "image": "https://assets.pokemon.com/assets/cms2/img/pokedex/full/052.png"
+    },
+    {
+        "id": 10,
+        "name": "Porygon",
+        "image": "https://assets.pokemon.com/assets/cms2/img/pokedex/full/137.png"
+    },
+    {
+        "id": 11,
+        "name": "Wobbuffet",
+        "image": "https://assets.pokemon.com/assets/cms2/img/pokedex/full/202.png"
+    }
+    
+]
