@@ -1,39 +1,88 @@
 import React, { useState } from 'react';
 import './App.css';
-import {Navbar, NavbarBrand, NavbarText, Container} from "reactstrap";
-import Card from "./components/PokemonCard";
-import PokemonCard from "./cards.json"
+import {Navbar, NavbarBrand, NavbarText, Container, Card, CardImg} from "reactstrap";
+import Pokemon from "./cards.json"
 
 function App() {
+  // Initial score to reset Score state to
   const initialScore = 0;
-  const [Score, setScore] = useState(0)
+  // States
+  const [Score, setScore] = useState(initialScore)
   const [HighScore, setHighScore] = useState(0)
-  const [clickedArray, setClickedArray] = useState([])
-  const [PokemonCard] = useState()
-  
-  //When card is clicked
-  //IF the ID is in the ARRAY
-  //    Then user loses
-  //ELSE if the ID is NOT in the array
-  // Store the ID in the ARRAY
-  // Randomize the cards
+  const [pokemonArray, setPokemonArray] = useState(Pokemon)
+  const [clickedArray, setClickedArray] = useState([]);
 
-  function clicked(id)
+  // Clicked function, runs logic for the game
+  function clicked(id) 
   {
-    // if(clickedArray.includes(id))
-    // {
-    //   alert("You Lose!")
-    //   setHighScore(Score)
-    // }
-    // else
-    // {
-    //   setClickedArray(clickedArray.push(id));
-    //   setScore(Score + 1)
-    // }
+    // If user gets all 12, display win
+    if(Score === 12)
+    {
+      // Alert user of win
+      alert("You Win!")
 
-    console.log(id)
+      // Set score to high score since you can't get more than 12 points
+      setHighScore(Score);
+
+      // Reset the Game
+      gameReset()
+    }
+    // If clickedArray doesn't include selected id
+    if(!clickedArray.includes(id))
+    {
+      // Increment score by 1 since it doesn't match the clicked array
+      setScore(Score + 1);
+
+      // Add the id to the clicked array
+      setClickedArray(clickedArray.concat(id))
+
+      // Randomize the pokemon cards
+      randomize(pokemonArray);
+    }
+    // If clicked Id is in the array, display loss
+    if(clickedArray.includes(id))
+    {
+      // If user's loser score is greater than the high score, store it
+      if(Score > HighScore)
+      {
+        setHighScore(Score);
+      }
+
+      // Reset the Game
+      gameReset();
+
+      // Alert user of loss
+      alert("You Lose!");
+    }
   }
 
+  function gameReset()
+  {
+    setScore(initialScore);
+    setClickedArray([]);
+  }
+
+  // Function randomizes position of each pokemon using the Fisher-Yates Shuffle
+  function randomize(pokemonArray) 
+  {
+    var currentIndex = pokemonArray.length, temporaryValue, randomIndex;
+
+    // While there remain elements to shuffle...
+    while (0 !== currentIndex) 
+    {
+      // Pick a remaining element...
+      randomIndex = Math.floor(Math.random() * currentIndex);
+      currentIndex -= 1;
+
+      // And swap it with the current element.
+      temporaryValue = pokemonArray[currentIndex];
+      pokemonArray[currentIndex] = pokemonArray[randomIndex];
+      pokemonArray[randomIndex] = temporaryValue;
+    }
+    return setPokemonArray(pokemonArray)
+  }
+  
+  // Render
   return (
     <div className="App">
       <Navbar color="dark" dark expand="md">
@@ -48,12 +97,15 @@ function App() {
       </Navbar>
 
       <Container>
-        {PokemonCard.map((pokemon) =>
-        {
-          return(
-            <Card key={pokemon.id} image={pokemon.image} name={pokemon.name} onClick={clicked(pokemon.id)}/>
-          )
-        })}
+        {/* Map out the cards from the pokemonArray state */}
+        {pokemonArray.map((pokemon) => 
+            {
+                return(
+                    <Card style={{width:"260px", height:"260px", float: "left", marginRight: "16px", marginTop: "8px"}} key={pokemon.id} value={pokemon.id} onClick={() => clicked(pokemon.id)}>
+                        <CardImg src={pokemon.image} alt={pokemon.name} />
+                    </Card> 
+                )
+            })}
       </Container>
     </div>
   );
