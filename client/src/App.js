@@ -18,31 +18,41 @@ function App() {
     // If user gets all 12, display win
     if(Score === 12)
     {
-      // Alert user of win
-      alert("You Win!")
-
-      // Set score to high score since you can't get more than 12 points
-      setHighScore(Score);
-
-      // Reset the Game
-      gameReset()
+      win();
     }
     // If clickedArray doesn't include selected id
     if(!clickedArray.includes(id))
     {
-      // Increment score by 1 since it doesn't match the clicked array
-      setScore(Score + 1);
-
-      // Add the id to the clicked array
-      setClickedArray(clickedArray.concat(id))
-
-      // Randomize the pokemon cards
-      randomize(pokemonArray);
+      game(id);
     }
     // If clicked Id is in the array, display loss
     if(clickedArray.includes(id))
     {
-      // If user's loser score is greater than the high score, store it
+      lose();
+    }
+  }
+
+  function gameReset()
+  {
+    setScore(initialScore);
+    setClickedArray([]);
+  }
+
+  function win()
+  {
+    // Alert user of win
+    alert("You Win!")
+
+    // Set score to high score since you can't get more than 12 points
+    setHighScore(Score);
+
+    // Reset the Game
+    gameReset()
+  }
+
+  function lose()
+  {
+    // If user's loser score is greater than the high score, store it
       if(Score > HighScore)
       {
         setHighScore(Score);
@@ -53,13 +63,18 @@ function App() {
 
       // Alert user of loss
       alert("You Lose!");
-    }
   }
 
-  function gameReset()
+  function game(id)
   {
-    setScore(initialScore);
-    setClickedArray([]);
+    // Increment score by 1 since it doesn't match the clicked array
+    setScore(Score + 1);
+
+    // Add the id to the clicked array
+    setClickedArray(clickedArray.concat(id))
+
+    // Randomize the pokemon cards
+    randomize(pokemonArray);
   }
 
   // Function randomizes position of each pokemon using the Fisher-Yates Shuffle
