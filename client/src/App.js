@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import './App.css';
 import {Navbar, NavbarBrand, NavbarText, Container, Card, CardImg} from "reactstrap";
 import Pokemon from "./cards.json"
 
