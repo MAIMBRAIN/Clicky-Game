@@ -15,7 +15,7 @@ function App() {
   function clicked(id) 
   {
     // If user gets all 12, display win
-    if(Score === 12)
+    if(clickedArray.length === pokemonArray.length)
     {
       win();
     }
@@ -25,7 +25,7 @@ function App() {
       game(id);
     }
     // If clicked Id is in the array, display loss
-    if(clickedArray.includes(id))
+    if(clickedArray.includes(id) && clickedArray.length !== 12)
     {
       lose();
     }
@@ -39,14 +39,13 @@ function App() {
 
   function win()
   {
-    // Alert user of win
-    alert("You Win!")
-
     // Set score to high score since you can't get more than 12 points
     setHighScore(Score);
-
     // Reset the Game
-    gameReset()
+    gameReset();
+    // Alert user of win
+    alert("You Win! \nThe game will now reset");
+    // Randomize
   }
 
   function lose()
@@ -61,7 +60,7 @@ function App() {
       gameReset();
 
       // Alert user of loss
-      alert("You Lose!");
+      alert("You Lose! \nThe game will now reset");
   }
 
   function game(id)
